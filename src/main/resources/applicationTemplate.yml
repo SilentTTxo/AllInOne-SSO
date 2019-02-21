@@ -1,0 +1,32 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    root: debug
+
+security:
+  basic:
+    enabled: true    #启用SpringSecurity的安全配置项
+  user:
+    name: tt    #认证用户名
+    password: a132132 #认证密码
+    role:              #授权角色
+    - USER
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml    # mybatis配置文件所在路径
+  mapper-locations:                                     # 所有的mapper映射文件
+  - classpath:mybatis/mapper/**/*.xml
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
+    driver-class-name: com.mysql.jdbc.Driver      # 配置MySQL的驱动程序类
+    url: jdbc:mysql://xxxxx:3306/DBN_AME?useUnicode=true&characterEncoding=utf-8       # 数据库连接地址
+    username: root                                  # 数据库用户名
+    password:                                 # 数据库连接密码
+    dbcp2:                                          # 进行数据库连接池的配置
+      min-idle: 5                                   # 数据库连接池的最小维持连接数
+      initial-size: 5                               # 初始化提供的连接数
+      max-total: 5                                  # 最大的连接数
+      max-wait-millis: 200                          # 等待连接获取的最大超时时间

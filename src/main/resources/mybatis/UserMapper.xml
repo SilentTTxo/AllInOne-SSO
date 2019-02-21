@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.silenttt.allInOne.sso.dao.UserDao">
+
+    <select id="find" resultType="top.silenttt.allInOne.sso.model.User">
+        SELECT id,username,password,auth FROM USER
+        <where>
+            <if test="id != null">
+                id != #{id}
+            </if>
+            <if test=" username != null">
+                username = #{username}
+            </if>
+        </where>
+    </select>
+</mapper>
