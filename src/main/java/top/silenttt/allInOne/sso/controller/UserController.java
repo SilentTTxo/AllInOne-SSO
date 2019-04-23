@@ -1,7 +1,10 @@
 package top.silenttt.allInOne.sso.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import top.silenttt.allInOne.sso.dao.Repository.UserRepository;
+import top.silenttt.allInOne.sso.dao.UserAuthDao;
 import top.silenttt.allInOne.sso.model.BaseResponse;
 
 /**
@@ -12,8 +15,13 @@ import top.silenttt.allInOne.sso.model.BaseResponse;
 @RequestMapping(value = "/user/")
 public class UserController {
 
+    @Autowired
+    UserRepository userRepository;
+
     @RequestMapping(value = "list")
     public BaseResponse list(){
-        return new BaseResponse();
+        BaseResponse rs = new BaseResponse();
+        rs.setValue(userRepository.findAll());
+        return rs;
     }
 }

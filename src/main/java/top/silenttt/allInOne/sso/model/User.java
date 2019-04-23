@@ -3,17 +3,30 @@ package top.silenttt.allInOne.sso.model;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Collection;
 
 /**
  * @author tangtao
  * @date 2019-02-18
  **/
+@Entity
 public class User {
+    @Id
+    @GeneratedValue
     private Integer id;
+
+    @Column(name = "username", nullable = false,length = 20)
     private String username;
+
+    @Column(name = "password", nullable = false,length = 100)
     private String password;
-    private String auth;
+
+    @Column(name = "auth", nullable = false,length = 20)
+    private Integer auth;
 
     public Integer getId() {
         return id;
@@ -39,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public String getAuth() {
+    public Integer getAuth() {
         return auth;
     }
 
-    public void setAuth(String auth) {
+    public void setAuth(Integer auth) {
         this.auth = auth;
     }
 }

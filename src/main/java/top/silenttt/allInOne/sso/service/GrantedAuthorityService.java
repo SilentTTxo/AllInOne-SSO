@@ -15,13 +15,13 @@ import java.util.Map;
  * @date 2019-02-20
  **/
 @Service
-public class GranteAuthorityService {
+public class GrantedAuthorityService {
 
-    private final Map<String,String> AUTH_MAP = new HashMap<>();
+    private final Map<Integer,String> AUTH_MAP = new HashMap<>();
 
     {
-        AUTH_MAP.put("-1","ROLE_USER");
-        AUTH_MAP.put("0","ROLE_ADMIN");
+        AUTH_MAP.put(-1,"ROLE_USER");
+        AUTH_MAP.put(0,"ROLE_ADMIN");
     }
 
     public List<GrantedAuthority> getAuthorityList(User user) {
