@@ -30,4 +30,9 @@ public class UserDetailService implements UserDetailsService {
         List<GrantedAuthority> authorities = granteAuthorityService.getAuthorityList(user);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
     }
+
+    public UserDetails loadUserByUser(User user){
+        List<GrantedAuthority> authorities = granteAuthorityService.getAuthorityList(user);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+    }
 }

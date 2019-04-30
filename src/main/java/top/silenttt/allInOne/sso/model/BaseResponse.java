@@ -33,4 +33,16 @@ public class BaseResponse {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    public BaseResponse(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public BaseResponse() {
+    }
+
+    public BaseResponse(Object value) {
+        this.value = value;
+    }
 }

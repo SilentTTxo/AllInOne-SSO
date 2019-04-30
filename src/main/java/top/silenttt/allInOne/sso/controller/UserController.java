@@ -1,27 +1,23 @@
 package top.silenttt.allInOne.sso.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.silenttt.allInOne.sso.dao.Repository.UserRepository;
-import top.silenttt.allInOne.sso.dao.UserAuthDao;
 import top.silenttt.allInOne.sso.model.BaseResponse;
+import top.silenttt.allInOne.sso.model.User;
+import top.silenttt.allInOne.sso.service.biz.UserService;
+import top.silenttt.allInOne.sso.util.CheckUtil;
 
-/**
- * @author tangtao
- * @date 2019-02-18
- **/
 @RestController
-@RequestMapping(value = "/user/")
+@RequestMapping(value = "/user")
 public class UserController {
-
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
-    @RequestMapping(value = "list")
+    @RequestMapping(value = "/info")
     public BaseResponse list(){
-        BaseResponse rs = new BaseResponse();
-        rs.setValue(userRepository.findAll());
-        return rs;
+        User user = userService.getSelf();
+        return new BaseResponse(user);
     }
 }

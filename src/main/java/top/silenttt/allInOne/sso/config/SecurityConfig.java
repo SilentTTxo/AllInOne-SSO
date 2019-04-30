@@ -7,8 +7,15 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
+import top.silenttt.allInOne.sso.filter.JwtAuthFilter;
+import top.silenttt.allInOne.sso.service.AuthResultHandler;
+import top.silenttt.allInOne.sso.service.ExceptionResolver;
+import top.silenttt.allInOne.sso.service.JwtResultHandler;
 import top.silenttt.allInOne.sso.service.UserDetailService;
 
 /**
@@ -21,6 +28,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailService userDetailService;
+
+    @Autowired
+    AuthResultHandler authResultHandler;
+
+    @Autowired
+    JwtAuthFilter jwtAuthFilter;
+
+    @Autowired
+    JwtResultHandler jwtResultHandler;
+
+    @Autowired
+    ExceptionResolver exceptionResolver;
 
     @Bean
     @Override
@@ -35,9 +54,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
+                .formLogin().failureHandler(authResultHandler).successHandler(authResultHandler).permitAll()
                 .and()
-                .httpBasic();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .httpBasic()
+                .and().csrf().disable();
+
+        http.addFilterBefore(jwtAuthFilter, LogoutFilter.class);
+        http.exceptionHandling().authenticationEntryPoint(exceptionResolver).accessDeniedHandler(exceptionResolver);
     }
 
     @Autowired
