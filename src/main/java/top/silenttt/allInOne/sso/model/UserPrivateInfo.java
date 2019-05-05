@@ -10,16 +10,16 @@ public class UserPrivateInfo {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "sex", nullable = false,length = 20)
+    @Column(name = "sex",length = 20)
     private Integer sex;
 
-    @Column(name = "age", nullable = false,length = 20)
+    @Column(name = "age",length = 20)
     private Integer age;
 
-    @Column(name = "email", nullable = false,length = 20)
+    @Column(name = "email",length = 20)
     private String email;
 
-    @Column(name = "tel", nullable = false,length = 20)
+    @Column(name = "tel",length = 20)
     private String tel;
 
     public Integer getId() {

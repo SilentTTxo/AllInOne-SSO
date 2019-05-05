@@ -17,6 +17,7 @@ import top.silenttt.allInOne.sso.service.AuthResultHandler;
 import top.silenttt.allInOne.sso.service.ExceptionResolver;
 import top.silenttt.allInOne.sso.service.JwtResultHandler;
 import top.silenttt.allInOne.sso.service.UserDetailService;
+import top.silenttt.allInOne.sso.service.biz.UserService;
 
 /**
  * @author tangtao
@@ -41,6 +42,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     ExceptionResolver exceptionResolver;
 
+    @Autowired
+    UserService userService;
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -50,7 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login", "/oauth/authorize", "/oauth/token_key").permitAll()
+                .antMatchers("/login","/signUp", "/oauth/authorize", "/oauth/token_key").permitAll()
                 .and()
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
@@ -67,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configGlobal(AuthenticationManagerBuilder auth) throws Exception{
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        PasswordEncoder passwordEncoder = userService.passwordEncoder;
         auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder);
     }
 
