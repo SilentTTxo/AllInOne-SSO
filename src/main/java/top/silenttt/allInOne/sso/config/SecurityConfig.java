@@ -11,7 +11,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
-import org.springframework.security.web.authentication.ui.DefaultLoginPageGeneratingFilter;
 import top.silenttt.allInOne.sso.filter.JwtAuthFilter;
 import top.silenttt.allInOne.sso.service.AuthResultHandler;
 import top.silenttt.allInOne.sso.service.ExceptionResolver;
