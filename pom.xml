@@ -154,11 +154,11 @@
                 </includes>
             </resource>
 
-            <!-- 某些情况下，打包后运行不起来需要打开注释 -->
-            <!-- <resource>
+            <!-- 指定资源路径 -->
+            <resource>
                 <directory>src/main/resources</directory>
                 <targetPath>BOOT-INF/classes/</targetPath>
-            </resource> -->
+            </resource>
         </resources>
     </build>
 </project>
