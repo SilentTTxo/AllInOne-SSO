@@ -21,6 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import top.silenttt.allInOne.sso.service.UserDetailService;
 
 /**
+ * OAuth配置
  * @author tangtao
  * @date 2019-02-18
  **/
