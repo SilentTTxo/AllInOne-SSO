@@ -1,5 +1,8 @@
 package top.silenttt.allInOne.sso.constant;
 
+/**
+ * 业务Exception
+ */
 public class BizException extends RuntimeException {
     private int code = 200;
     private String msg ;

@@ -15,6 +15,9 @@ import java.io.IOException;
 
 import static top.silenttt.allInOne.sso.constant.ErrorCode.CHECK_CODE.*;
 
+/**
+ * jwt验证后续处理handler
+ */
 @Service
 public class JwtResultHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
     @Override

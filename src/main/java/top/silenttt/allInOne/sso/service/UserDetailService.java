@@ -12,6 +12,7 @@ import top.silenttt.allInOne.sso.model.User;
 import java.util.List;
 
 /**
+ * 加载用户信息
  * @author tangtao
  * @date 2019-02-18
  **/

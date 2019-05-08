@@ -1,5 +1,8 @@
 package top.silenttt.allInOne.sso.constant;
 
+/**
+ * 错误码约定
+ */
 public interface ErrorCode {
     interface BASE_CODE {
         int OK = 200;

@@ -8,6 +8,9 @@ import top.silenttt.allInOne.sso.model.User;
 import top.silenttt.allInOne.sso.service.biz.UserService;
 import top.silenttt.allInOne.sso.util.CheckUtil;
 
+/**
+ * 无需验证token的controller
+ */
 @RestController
 public class UnAuthController {
 

@@ -22,6 +22,9 @@ import java.io.Writer;
 
 import static top.silenttt.allInOne.sso.constant.ErrorCode.*;
 
+/**
+ * 统一异常拦截器
+ */
 @Service
 public class ExceptionResolver implements HandlerExceptionResolver, AccessDeniedHandler, AuthenticationEntryPoint {
     Logger ILOG = LoggerFactory.getLogger(this.getClass());

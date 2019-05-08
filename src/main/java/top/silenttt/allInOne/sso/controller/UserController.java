@@ -9,6 +9,9 @@ import top.silenttt.allInOne.sso.model.User;
 import top.silenttt.allInOne.sso.service.biz.UserService;
 import top.silenttt.allInOne.sso.util.CheckUtil;
 
+/**
+ * 用户自己相关接口
+ */
 @RestController
 @RequestMapping(value = "/user")
 public class UserController {

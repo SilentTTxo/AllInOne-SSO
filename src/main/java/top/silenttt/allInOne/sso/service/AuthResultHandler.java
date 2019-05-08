@@ -21,6 +21,9 @@ import java.io.IOException;
 
 import static top.silenttt.allInOne.sso.constant.ErrorCode.CHECK_CODE.LOGIN_ERROR;
 
+/**
+ * 认证结果后续处理handler
+ */
 @Service
 public class AuthResultHandler implements AuthenticationSuccessHandler, AuthenticationFailureHandler {
 

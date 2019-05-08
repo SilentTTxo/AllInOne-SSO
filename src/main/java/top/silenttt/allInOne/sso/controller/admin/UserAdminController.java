@@ -10,6 +10,7 @@ import top.silenttt.allInOne.sso.service.biz.UserService;
 import top.silenttt.allInOne.sso.util.CheckUtil;
 
 /**
+ * admin管理页面user接口
  * @author tangtao
  * @date 2019-02-18
  **/

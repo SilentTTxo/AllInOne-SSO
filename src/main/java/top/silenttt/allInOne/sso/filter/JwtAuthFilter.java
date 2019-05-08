@@ -28,6 +28,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * jwtToken验证过滤器
+ */
 @Component
 public class JwtAuthFilter extends AbstractAuthenticationProcessingFilter {
     Logger ILOG = LoggerFactory.getLogger(this.getClass());
