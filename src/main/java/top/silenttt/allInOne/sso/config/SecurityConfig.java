@@ -19,6 +19,7 @@ import top.silenttt.allInOne.sso.service.UserDetailService;
 import top.silenttt.allInOne.sso.service.biz.UserService;
 
 /**
+ * Security配置
  * @author tangtao
  * @date 2019-02-18
  **/
