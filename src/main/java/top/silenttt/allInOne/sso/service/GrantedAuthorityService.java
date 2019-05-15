@@ -1,8 +1,13 @@
 package top.silenttt.allInOne.sso.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
+import top.silenttt.allInOne.sso.dao.AuthLevelMapDao;
+import top.silenttt.allInOne.sso.model.AuthLevel;
 import top.silenttt.allInOne.sso.model.User;
 
 import java.util.ArrayList;
@@ -16,17 +21,31 @@ import java.util.Map;
  **/
 @Service
 public class GrantedAuthorityService {
+    private Logger LOG = LoggerFactory.getLogger(this.getClass());
 
-    private final Map<Integer,String> AUTH_MAP = new HashMap<>();
+    @Autowired
+    AuthLevelMapDao authLevelMapDao;
 
-    {
-        AUTH_MAP.put(-1,"ROLE_USER");
-        AUTH_MAP.put(0,"ROLE_ADMIN");
-    }
+    private Map<Integer,String> authMap;
 
     public List<GrantedAuthority> getAuthorityList(User user) {
+        if(authMap == null){
+            reloadAuthMap();
+        }
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority(AUTH_MAP.get(user.getAuth())));
+        grantedAuthorities.add(new SimpleGrantedAuthority(authMap.get(user.getAuth())));
         return  grantedAuthorities;
+    }
+
+    public void reloadAuthMap(){
+        LOG.info("start reload auth map");
+        List<AuthLevel> authLevelList = authLevelMapDao.getAll();
+        Map<Integer,String> newAuthMap = new HashMap<>(authLevelList.size());
+
+        for(AuthLevel authLevel : authLevelList){
+            newAuthMap.put(authLevel.getId(),authLevel.getRole());
+        }
+        authMap = newAuthMap;
+        LOG.info("end reload auth map ,auth size: {}",authLevelList.size());
     }
 }

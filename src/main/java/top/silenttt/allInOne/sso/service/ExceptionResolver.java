@@ -27,7 +27,7 @@ import static top.silenttt.allInOne.sso.constant.ErrorCode.*;
  */
 @Service
 public class ExceptionResolver implements HandlerExceptionResolver, AccessDeniedHandler, AuthenticationEntryPoint {
-    Logger ILOG = LoggerFactory.getLogger(this.getClass());
+    private Logger ILOG = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {

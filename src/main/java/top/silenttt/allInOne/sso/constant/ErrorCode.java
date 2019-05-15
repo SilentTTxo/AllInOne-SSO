@@ -14,5 +14,6 @@ public interface ErrorCode {
         int LOGIN_BAD_TOKEN = 10002;
         int LOGIN_TOKEN_EXPIRE = 10003;
         int PARAM_ERROR = 10011;
+        int REGIST_ERROR = 10021;
     }
 }

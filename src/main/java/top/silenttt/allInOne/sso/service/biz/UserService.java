@@ -5,6 +5,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import top.silenttt.allInOne.sso.constant.BizException;
+import top.silenttt.allInOne.sso.constant.ErrorCode;
 import top.silenttt.allInOne.sso.dao.Repository.UserRepository;
 import top.silenttt.allInOne.sso.model.User;
 import top.silenttt.allInOne.sso.model.UserPrivateInfo;
@@ -48,6 +50,10 @@ public class UserService {
         user.setGmtCreateTime(new Date());
         user.setGmtModifyTime(new Date());
         user.setUserPrivateInfo(new UserPrivateInfo());
+
+        if(userRepository.findByUsername(user.getUsername()) != null){
+            throw new BizException(ErrorCode.CHECK_CODE.REGIST_ERROR,"username already exist");
+        }
 
         save(user);
     }
