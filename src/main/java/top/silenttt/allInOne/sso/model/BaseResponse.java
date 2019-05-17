@@ -45,4 +45,6 @@ public class BaseResponse {
     public BaseResponse(Object value) {
         this.value = value;
     }
+
+    public static BaseResponse NORMAL_RETURN = new BaseResponse();
 }

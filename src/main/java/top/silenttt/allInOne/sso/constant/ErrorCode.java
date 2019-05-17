@@ -16,4 +16,7 @@ public interface ErrorCode {
         int PARAM_ERROR = 10011;
         int REGIST_ERROR = 10021;
     }
+    interface BIZ_CODE {
+        int BIZ_ERROR = 50001;
+    }
 }

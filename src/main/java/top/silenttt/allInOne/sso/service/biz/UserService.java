@@ -3,10 +3,12 @@ package top.silenttt.allInOne.sso.service.biz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import top.silenttt.allInOne.sso.constant.BizException;
 import top.silenttt.allInOne.sso.constant.ErrorCode;
+import top.silenttt.allInOne.sso.dao.Repository.UserPrivateInfoRepository;
 import top.silenttt.allInOne.sso.dao.Repository.UserRepository;
 import top.silenttt.allInOne.sso.model.User;
 import top.silenttt.allInOne.sso.model.UserPrivateInfo;
@@ -20,6 +22,9 @@ public class UserService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserPrivateInfoRepository userPrivateInfoRepository;
 
     public List<User> getUserListByPage(Integer page,int count){
         return userRepository.findAll();
@@ -56,5 +61,15 @@ public class UserService {
         }
 
         save(user);
+    }
+
+    public UserPrivateInfo updatePrivateInfo(UserPrivateInfo info){
+        String username = (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userRepository.findByUsername(username);
+        if(user == null){
+            throw new BizException(ErrorCode.BIZ_CODE.BIZ_ERROR,"can not find user");
+        }
+        info.setId(user.getUserPrivateInfo().getId());
+        return userPrivateInfoRepository.save(info);
     }
 }

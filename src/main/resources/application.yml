@@ -18,6 +18,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
     driver-class-name: com.mysql.jdbc.Driver      # 配置MySQL的驱动程序类
     url: jdbc:mysql://localhost:3306/TT_SSO?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT       # 数据库连接地址
+    serverTimezone: GMT%2b8
     username: root                                  # 数据库用户名
     password: a132132                                # 数据库连接密码
     dbcp2:                                          # 进行数据库连接池的配置
@@ -30,3 +31,7 @@ spring:
       ddl-auto: update
     show-sql: true
     generate-ddl: false
+  jackson:
+    time-zone: GMT+8
+    serialization:
+      write-dates-as-timestamps: true
